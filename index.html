@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire Risque Contrepartie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #walletStatus {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestionnaire Risque Contrepartie</h1>
+        <button id="connectWallet">Connect Wallet</button>
+        <p id="walletStatus">Status: Not Connected</p>
+
+        <h2>Ajouter une Contrepartie</h2>
+        <label for="portefeuille">Adresse portefeuille:</label>
+        <input type="text" id="portefeuille" placeholder="0x...">
+        <label for="scoreCredit">Score Crédit:</label>
+        <input type="number" id="scoreCredit" placeholder="Ex: 75">
+        <label for="limiteExposition">Limite d'exposition:</label>
+        <input type="number" id="limiteExposition" placeholder="Ex: 100000">
+        <label for="collateral">Collateral:</label>
+        <input type="number" id="collateral" placeholder="Ex: 50000">
+        <button id="ajouterContrepartie">Ajouter Contrepartie</button>
+
+        <h2>Mettre à jour l'exposition</h2>
+        <label for="emetteur">Adresse émetteur:</label>
+        <input type="text" id="emetteur" placeholder="0x...">
+        <label for="contrepartie">Adresse contrepartie:</label>
+        <input type="text" id="contrepartie" placeholder="0x...">
+        <label for="montant">Montant:</label>
+        <input type="number" id="montant" placeholder="Ex: 10000">
+        <button id="mettreAJourExposition">Mettre à jour</button>
+
+        <h2>Calculer Ratio de Couverture</h2>
+        <label for="emetteurRatio">Adresse émetteur:</label>
+        <input type="text" id="emetteurRatio" placeholder="0x...">
+        <label for="contrepartieRatio">Adresse contrepartie:</label>
+        <input type="text" id="contrepartieRatio" placeholder="0x...">
+        <button id="calculerRatio">Calculer Ratio</button>
+        <p id="ratioResult" class="output">Ratio: N/A</p>
+
+        <h2>Calculer le Score de Risque</h2>
+        <label for="emetteurRisque">Adresse émetteur:</label>
+        <input type="text" id="emetteurRisque" placeholder="0x...">
+        <label for="contrepartieRisque">Adresse contrepartie:</label>
+        <input type="text" id="contrepartieRisque" placeholder="0x...">
+        <button id="calculerRisque">Calculer Risque</button>
+        <p id="risqueResult" class="output">Risque: N/A</p>
+
+        <h2>Obtenir Exposition Nette</h2>
+        <label for="adresseExposition">Adresse contrepartie:</label>
+        <input type="text" id="adresseExposition" placeholder="0x...">
+        <button id="obtenirExposition">Obtenir Exposition Nette</button>
+        <p id="expositionResult" class="output">Exposition Nette: N/A</p>
+
+        <h2>Obtenir toutes les Contreparties</h2>
+        <button id="getContreparties">Voir Contreparties</button>
+        <p id="contrepartiesList" class="output">Contreparties: N/A</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="risk.js"></script>
+</body>
+</html>
